@@ -2,26 +2,39 @@ import pyautogui
 
 class Aimbot:
     def __init__(self):
-        self.isEnemy = False # Propriedade que identifica se o screenshot é de um inimigo ou não
+        self.isEnemy = False
         self.inFight = False   
+        self.regionPrint = None
+        self.rgbWanted = None
                     
-    # Tira uma screenshot no pixel no name do enemy   
+    # Screenshot de uma região selecionada        
     def printTarget (self):
-        screenshot = pyautogui.screenshot(region=(1273, 42, 1, 1)) # screenshot no local exato
-        screenshot.save('images/pixels/enemy-name.png') # Salva img numa pasta
-        return screenshot # Envia img para propriedade no constructor
+        screenshot = pyautogui.screenshot(region=self.regionPrint) 
+        screenshot.save('images/pixels/enemy-name.png') 
+        return screenshot
+    
+   # Encontra um pixel com determido rgb e retorna as cordenadas
+    def findRgb(self, screenshot):   
+        width, height = screenshot.size
+        stop = False # Quando for verdadeira, cancela os loopings
         
-     
-    # Lerá o conteudo da screenshot     
-    def readScreen(self, screenshot):        
-        r, g, b = screenshot.getpixel((0, 0)) # Recebe o valores rgb da screenshot
+        for x in range(0, width):
+            if (stop == True):
+                break
+            else:
+                for y in range(0, height):    
+                    if (stop == True):
+                        break
+                    else:    
+                        
+                        r, g, b = screenshot.getpixel((x, y)) 
 
-        if (r == 255) and (g == 0) and (b == 0): # Se a screenshot for vermelhay
-            self.isEnemy = True
-        else: # Se não for vermelha
-            self.isEnemy = False # evela na propriedade isEnemy q a screenshot não é de origem inimiga
-            self.inFight = False
-            
+                        if (r == self.rgbWanted[0]) and (g == self.rgbWanted[1]) and (b == self.rgbWanted[2]): # Se a screenshot for vermelhay
+                            stop = True
+                            return {'x': x, 'y': y}
+                        else:
+                            return None
+
     def atackEnemy (self):
         pyautogui.press('enter') 
         self.inFight = True

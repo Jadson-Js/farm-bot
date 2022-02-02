@@ -1,8 +1,11 @@
+#import pyautogui
 from utils.utils import scannerToAtack, atack
+
+# pyautogui.displayMousePosition()
 
 while (True):
     mustAtack = scannerToAtack()
-    print (mustAtack)
+    print(mustAtack)
     
     if (mustAtack['inFight'] == True): # Se estiver no modo fight, apenas resete o loop
         continue
