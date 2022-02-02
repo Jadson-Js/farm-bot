@@ -29,9 +29,9 @@ class Aimbot:
                         
                         r, g, b = screenshot.getpixel((x, y)) 
 
-                        if (r == self.rgbWanted[0]) and (g == self.rgbWanted[1]) and (b == self.rgbWanted[2]): # Se a screenshot for vermelhay
+                        if (r == self.rgbWanted[0]) and (g == self.rgbWanted[1]) and (b == self.rgbWanted[2]):
                             stop = True
-                            return {'x': x, 'y': y}
+                            return {'x': self.regionPrint[0] + x, 'y': self.regionPrint[1] + y}
                         else:
                             return None
 
