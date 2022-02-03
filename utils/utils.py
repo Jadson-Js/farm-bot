@@ -2,18 +2,34 @@ from modules.Aimbot import Aimbot
 
 aimbot = Aimbot()
 
-# Lê o pixel onde fica o nome enemy e retorna os dados em um dicionario contendo: 
-def scannerToAtack ():
-    # Aqui é declarado a região que o scanner vai procurar o pixel alvo
-    aimbot.regionPrint = (1273, 42, 1, 1)
-    aimbot.rgbWanted = [255, 0, 0]
+# Screenshot de um local selecionado e retorna a coordenadas do getpixel
+def findInScreenshot (coordinate, rgb):
+    # Declarando coordenadas e rgb
+    aimbot.regionToPrint = coordinate
+    aimbot.rgbWanted = rgb
     
     screenshot = aimbot.printTarget() 
     
     location = aimbot.findRgb(screenshot) 
+    return location
+
+def myLocation ():
+    # Coordenadas da area onde o user pode estar
+    coordinate = (800, 200, 400, 350)
+    rgb = (255,  57, 255)
+    
+    location = findInScreenshot(coordinate, rgb)
+    return location
+
+
+def scannerToAtack ():
+    # Coordenadas do pixel no name enemy
+    coordinate = (1273, 42, 1, 1)
+    rgb = (255, 0, 0)
+    
+    location = findInScreenshot(coordinate, rgb)
     
     if (location != None):
-        print(f'coordinates: {location}')
         aimbot.isEnemy = True
     else:
         aimbot.isEnemy = False
@@ -25,3 +41,13 @@ def scannerToAtack ():
 
 def atack ():
     aimbot.atackEnemy()
+    
+# Clica no use.
+def clickMe ():
+    coordinate = myLocation()
+    if (coordinate != None):
+        x = coordinate['x']
+        y = coordinate['y']
+        aimbot.clickIn(x, y)
+    else:
+        return

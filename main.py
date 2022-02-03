@@ -1,14 +1,12 @@
-#import pyautogui
-from utils.utils import scannerToAtack, atack
-
-# pyautogui.displayMousePosition()
+from utils.utils import clickMe, scannerToAtack, atack
 
 while (True):
     dataScanner = scannerToAtack()
-    print(dataScanner)
     
     if (dataScanner['inFight'] == True): 
         continue
     
-    if(dataScanner['isEnemy'] == True): # Se Não estiver em modo de luta, ataca o enemy e ativa modo luta
+    if(dataScanner['isEnemy'] == True): 
         atack()
+    else:
+        clickMe()
