@@ -1,5 +1,7 @@
 import pyautogui
 
+pyautogui.PAUSE = 1
+
 class Aimbot:
     def __init__(self):
         self.isEnemy = False
@@ -44,3 +46,12 @@ class Aimbot:
         
     def clickIn (self, x, y):
         pyautogui.click(x, y)
+        
+    def moveArrow (self, direction, places):
+        for presses in range(0, places):
+            pyautogui.press(direction)
+        
+    def startPositionArrow (self):
+        self.moveArrow('left', 1)
+        self.moveArrow('up', 1)
+        

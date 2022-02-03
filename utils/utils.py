@@ -21,6 +21,21 @@ def myLocation ():
     location = findInScreenshot(coordinate, rgb)
     return location
 
+# Clica no use.
+def clickMe ():
+    coordinate = myLocation()
+    if (coordinate != None):
+        x = coordinate['x']
+        y = coordinate['y'] + 7
+        aimbot.clickIn(x, y)
+    else:
+        return
+    
+def startPositionArrow ():
+    clickMe() 
+    aimbot.moveArrow('up', 1)
+    aimbot.moveArrow('right', 1)
+
 
 def scannerToAtack ():
     # Coordenadas do pixel no name enemy
@@ -39,15 +54,14 @@ def scannerToAtack ():
     return {'isEnemy': aimbot.isEnemy, 'inFight': aimbot.inFight}    
     # obs: Pode parecer q a existencia das duas variavéis são desnessesaria, porém a ordem q é manipulada cada uma, interfere se o aimbot vai iniciar um combate ou se ele ja está em combate e graças a isso, o aimbot se torná mais seguro
 
+def findEnemy ():
+    startPositionArrow()
+    
+    direction = ('down', 'left', 'up', 'right')
+        
+    #FIRST CICLE
+    for index in range(0, len(direction)):
+        aimbot.moveArrow(direction[index], 2)
+
 def atack ():
     aimbot.atackEnemy()
-    
-# Clica no use.
-def clickMe ():
-    coordinate = myLocation()
-    if (coordinate != None):
-        x = coordinate['x']
-        y = coordinate['y']
-        aimbot.clickIn(x, y)
-    else:
-        return
