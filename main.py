@@ -1,15 +1,15 @@
 # import pyautogui
-from utils.utils import clickMe, findEnemy, scannerToAtack, atack
+from utils.UserFunction import UserFunctions
+from modules.Aimbot import Aimbot 
 
-#pyautogui.displayMousePosition()
-
-dataScanner = {'isEnemy': False, 'inFight': False}    
+aimbot = Aimbot()
+UserFunctions = UserFunctions(aimbot)
 
 while (True):
-    if (dataScanner['inFight'] == True): 
+    if (aimbot.inFight == True): 
         continue
     
-    if(dataScanner['isEnemy'] == True): 
-        atack()
+    if(aimbot.isEnemy == True): 
+        UserFunctions.atack()
     else:
-       findEnemy()
+       UserFunctions.findEnemy()
