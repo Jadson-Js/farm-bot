@@ -1,7 +1,10 @@
+from utils.ReadScreen import ReadScreen # Class com funções especificas para leitura de tela.
+
 class User:
-    def __init__ (self, aimbot, useReadScreen):
+    def __init__ (self, aimbot, useMain):
         self.aimbot = aimbot
-        self.useReadScreen = useReadScreen
+        self.useMain = useMain
+        self.useReadScreen = ReadScreen(aimbot)
 
     # Clica no user
     def clickMe (self):
@@ -35,9 +38,14 @@ class User:
             for x in range(0, 2): #  Realize essa operação por esse numero de vezes
                 # Mova a ceta para direção seleciona ex: esquerda
                 self.aimbot.moveArrow(direction[index]) 
+                self.useMain.updateAimbotToEnemy()
                 
+                if (self.aimbot.isEnemy == True):
+                    return
+                else:
+                    continue
                 
-                
+                 
                         
     def startFight (self):
         self.aimbot.atack()

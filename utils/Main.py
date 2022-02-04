@@ -1,8 +1,11 @@
+from utils.User import User # Class com funções q agirão diretamente com o aimbot.  
+from utils.ReadScreen import ReadScreen # Class com funções especificas para leitura de tela.
+
 class Main:
-    def __init__ (self, aimbot, useUser, useReadScreen):
+    def __init__ (self, aimbot):
         self.aimbot = aimbot
-        self.useUser = useUser
-        self.useReadScreen = useReadScreen
+        self.useUser = User(aimbot, self)
+        self.useReadScreen = ReadScreen(aimbot)
         
     # Atualiza as propriedades 'inFight' e 'isEnemy' do aimbot
     def updateAimbotToEnemy(self):
@@ -11,8 +14,10 @@ class Main:
         
         # Atualizando as propriedades
         if (enemyLocation != None):
+            print('Is An Enemy')
             self.aimbot.isEnemy = True
         else:
+            print('Is Not A Enemy')
             self.aimbot.isEnemy = False
             self.aimbot.inFight = False
             

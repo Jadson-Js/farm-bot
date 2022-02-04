@@ -1,12 +1,8 @@
 from modules.Aimbot import Aimbot # Class com o celebro do aimbot, contem todas ações do pyautogui
 from utils.Main import Main # Class com utilidades principal, Ações completas do aimbot.
-from utils.User import User # Class com funções q agirão diretamente com o aimbot.  
-from utils.ReadScreen import ReadScreen # Class com funções especificas para leitura de tela.
 
 aimbot = Aimbot()
-useReadScreen = ReadScreen(aimbot)
-useUser = User(aimbot, useReadScreen)
-useMain = Main(aimbot, useUser, useReadScreen)
+useMain = Main(aimbot)
 
 while (True):
     print('Loop Restarted')
