@@ -17,18 +17,26 @@ class UserFunctions:
 
     def startPositionArrow (self):
         self.clickMe() 
-        self.aimbot.moveArrow('up', 1)
-        self.aimbot.moveArrow('right', 1)
+        self.aimbot.moveArrow('up')
+        self.aimbot.moveArrow('right')
 
-
+ 
     def findEnemy (self):
         self.startPositionArrow()
 
         direction = ('down', 'left', 'up', 'right')
 
         #FIRST CICLE
-        for index in range(0, len(direction)):
-            self.aimbot.moveArrow(direction[index], 2)
+        for index in range(0, len(direction)):   
+            for x in range(0, 2):    
+                self.aimbot.moveArrow(direction[index])
+                
+                self.readScreen.scannerEnemyName()
+                
+                if (self.aimbot.isEnemy == True):
+                    return 
+                else:
+                    continue
 
     def atack (self):
         self.aimbot.atackEnemy()

@@ -1,6 +1,12 @@
 from modules.Aimbot import Aimbot 
 
 aimbot = Aimbot()
+userFunctions = UserFunctions(aimbot)
+readScreen = ReadScreen(aimbot)
+
+from modules.Aimbot import Aimbot 
+
+aimbot = Aimbot()
 
 # Screenshot de um local selecionado e retorna a coordenadas do getpixel
 def findInScreenshot (coordinate, rgb):

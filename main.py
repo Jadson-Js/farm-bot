@@ -1,15 +1,19 @@
-# import pyautogui
 from utils.UserFunction import UserFunctions
+from utils.ReadScreen import ReadScreen
 from modules.Aimbot import Aimbot 
 
 aimbot = Aimbot()
-UserFunctions = UserFunctions(aimbot)
+userFunctions = UserFunctions(aimbot)
+readScreen = ReadScreen(aimbot)
 
 while (True):
+    print('Loop Restarted')
+    readScreen.scannerEnemyName()
+
     if (aimbot.inFight == True): 
         continue
-    
+
     if(aimbot.isEnemy == True): 
-        UserFunctions.atack()
+        userFunctions.atack()
     else:
-       UserFunctions.findEnemy()
+        userFunctions.findEnemy()

@@ -47,11 +47,10 @@ class Aimbot:
     def clickIn (self, x, y):
         pyautogui.click(x, y)
         
-    def moveArrow (self, direction, places):
-        for presses in range(0, places):
-            pyautogui.press(direction)
+    def moveArrow (self, direction):
+        pyautogui.press(direction)
         
     def startPositionArrow (self):
-        self.moveArrow('left', 1)
-        self.moveArrow('up', 1)
+        self.moveArrow('left')
+        self.moveArrow('up')
         
