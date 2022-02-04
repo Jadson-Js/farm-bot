@@ -4,12 +4,14 @@ class ReadScreen:
 
     # Screenshot de um local selecionado e retorna a coordenadas do getpixel
     def findInScreenshot (self, coordinate, rgb):
-        # Declarando coordenadas e rgb
+        # Declarando dados do pixel nas propriedades do aimbot
         self.aimbot.regionToPrint = coordinate
         self.aimbot.rgbWanted = rgb
 
+        # Tira print de uma area especificada nas propriedades do aimbot
         screenshot = self.aimbot.printTarget() 
 
+        # Retorna a localização do pixel q coincide com as propriedades do aimbot, se não for encontrado retorna None
         location = self.aimbot.findRgb(screenshot) 
         return location
 
@@ -22,19 +24,11 @@ class ReadScreen:
         return location
     
     def scannerEnemyName (self):
-        # Coordenadas do pixel no name enemy
+        # Dados do pixel onde fica o enemyName
         coordinate = (1273, 42, 100, 100)
         rgb = (255, 0, 0)
 
-        location = self.findInScreenshot(coordinate, rgb)
+        # Retorna a localização do pixel se coiciderem com os dados enviados, se não retorna None
+        enemyLocation = self.findInScreenshot(coordinate, rgb)
 
-        if (location != None):
-            print('Is Enemy!!!')
-            self.aimbot.isEnemy = True
-        else:
-            print('Is Not A Enemy')
-            self.aimbot.isEnemy = False
-            self.aimbot.inFight = False
-
-        # ['isEnemy] == O scanner identificou algum inimigo & ['inFight'] == O aimbot ja está em um kombate
-        # obs: Pode parecer q a existencia das duas variavéis são desnessesaria, porém a ordem q é manipulada cada uma, interfere se o aimbot vai iniciar um combate ou se ele ja está em combate e graças a isso, o aimbot se torná mais seguro
+        return enemyLocation

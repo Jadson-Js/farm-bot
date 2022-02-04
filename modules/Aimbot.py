@@ -40,9 +40,8 @@ class Aimbot:
         else:
             return None
 
-    def atackEnemy (self):
+    def atack (self):
         pyautogui.press('enter') 
-        self.inFight = True
         
     def clickIn (self, x, y):
         pyautogui.click(x, y)
