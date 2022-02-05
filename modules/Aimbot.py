@@ -1,6 +1,6 @@
 import pyautogui
 
-pyautogui.PAUSE = 1
+pyautogui.PAUSE = .2
 
 class Aimbot:
     def __init__(self):
@@ -53,3 +53,4 @@ class Aimbot:
         self.moveArrow('left')
         self.moveArrow('up')
         
+aimbot = Aimbot()
