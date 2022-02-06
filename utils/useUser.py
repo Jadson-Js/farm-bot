@@ -1,3 +1,4 @@
+from time import sleep
 from modules.Aimbot import aimbot # ERROR: CHAMA O useMain E O useMain também chama o useUser
 from utils.useReadScreen import myLocation
 
@@ -9,74 +10,67 @@ def clickMe ():
         x = coordinate['x'] + 2
         y = coordinate['y'] + 7
         aimbot.clickIn(x, y)
-    else:
-        print('DANGER: User not found!')
-        return
+    else: 
+        print('DANGER: User not found!, click of emmergence!')
+        aimbot.clickIn(1100, 340)
     
 # Posiciona as arrow para que simplifique o loop do findEnemy
 def startPositionArrow ():
     clickMe() 
-    
     aimbot.moveArrow('up')
     aimbot.moveArrow('right')
-    
-    
-def scannerByArrow (updateAimbotToEnemy):
+        
+def scannerByArrow (area, updateAimbotToEnemy, skillBuffs):
+    direction = ('down', 'left', 'up', 'right') 
+    places = 2 # Casas q a seta moverá
 
-    direction = ('down', 'left', 'up', 'right')
-    
-    places = 2
-    
-    for area in range(0, 10):
-        
-        
+
+    for area in range(1, area): # Numero da area q o espiral vai percorrer
+        skillBuffs() 
+            
         for index in range(0, len(direction)):
-            if (index % 2 != 0):
+            
+            if (area != 1) and (index % 2 == 0):
                 places += 1
+            
                 
-            for moves in range(0, places):
-                aimbot.moveArrow(direction[index]) 
+            for moves in range(0, places): # Numero de movimentos da ceta
+                aimbot.moveArrow(direction[index]) # Isso move a ceta um uma padrão spiral
 
+                # Atualizando o aimbot a cada movimento do espiral
                 updateAimbotToEnemy() 
-                if (aimbot.isEnemy == True):
+                
+                if (aimbot.isEnemy == True) or (aimbot.isLoot == True):
                     return
                 else:
                     continue
                 
-                
-                
-"""
-FIRST SPIRAL
-
-index | direction | places 
-0     | down      | 2
-1     | left      | 2
-2     | up        | 2
-3     | right     | 3
-
-OUTHERS SPIRAL
-
-index | direction | places 
-0     | down      | 3
-1     | left      | 4 + 1
-2     | up        | 4
-3     | right     | 5 + 1
-"""
-
-"""
-places += 1
-print(f'{direction[index]} - {places}')
-aimbot.moveArrow(direction[index], places) 
-"""       
-"""
-updateAimbotToEnemy() 
-if (aimbot.isEnemy == True):
-    return
-else:
-    continue
-"""
-        
-            
-            
 def startFight ():
-    aimbot.atack()
+    hold = False
+    aimbot.pressButton('enter', hold) # Inicia confronto
+    aimbot.pressButton('enter', hold) # Se tiver 2 em um mesmo bloco, ele atacará o primeiro
+    sleep(.5)
+    aimbot.pressButton('enter', hold) # Se for um loot, ja pega o loot
+    
+    
+def openGetCloseLoot ():
+    hold = False
+    print('Inicio do looteamento')
+    
+    aimbot.pressButton('enter', hold) # Vá até o loot e abrá
+    
+    sleep(1) # Espere chegar lá
+    
+    aimbot.pressButton('enter', hold) # Pegue todo o loot
+    
+  
+    aimbot.pressButton('enter', hold)  # Se posicione em cima do cadaver
+    
+    sleep(.5) # Espere o aimbot chegar lá
+    
+    print('fim do looteamento')
+        
+        
+        
+
+    

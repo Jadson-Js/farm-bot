@@ -5,10 +5,11 @@ pyautogui.PAUSE = .2
 class Aimbot:
     def __init__(self):
         self.isEnemy = False
-        self.inFight = False   
+        self.inFight = False 
+        self.isLoot = False  
         self.regionToPrint = None
         self.rgbWanted = None
-                    
+             
     # Screenshot de uma região selecionada        
     def printTarget (self):
         screenshot = pyautogui.screenshot(region=self.regionToPrint) 
@@ -39,16 +40,24 @@ class Aimbot:
                             continue
         else:
             return None
-
-    def atack (self):
-        pyautogui.press('enter') 
+    
+    # Pressiona uma keyword
+    def pressButton (self, button, hold):
+        if (hold == True): # Deve pressiona o button indicado + 'alt'
+            with pyautogui.hold('alt'):
+                pyautogui.press(button) 
+        else: # Se não so preciona mesmo
+            pyautogui.press(button) 
         
+    # Clicka em uma coordenada indicada
     def clickIn (self, x, y):
         pyautogui.click(x, y)
         
+    # Apague isso e utilize o 'pressButton'
     def moveArrow (self, direction):
         pyautogui.press(direction)
         
+    # Apague isso e utilize o 'pressButton'
     def startPositionArrow (self):
         self.moveArrow('left')
         self.moveArrow('up')

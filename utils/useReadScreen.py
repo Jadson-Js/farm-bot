@@ -18,10 +18,34 @@ def myLocation ():
     location = findInScreenshot(coordinate, rgb)
     return location
 
-def scannerEnemyName ():
+# (Leitura de tela) Verifica se no camto superior esquerdo, há a indicação de um inimigo
+def watcherEnemyName (): 
     # Dados do pixel onde fica o enemyName
-    coordinate = (1273, 42, 100, 100)
-    rgb = (255, 0, 0)
+    coordinate = (1298, 39, 1, 1)
+    rgb = (221,   0,   0)
+    
     # Retorna a localização do pixel se coiciderem com os dados enviados, se não retorna None
-    enemyLocation = findInScreenshot(coordinate, rgb)
-    return enemyLocation
+    isEnemy = findInScreenshot(coordinate, rgb)
+    
+    if (isEnemy !=  None):
+        isEnemy = True
+    else:
+        isEnemy = False
+    
+    return isEnemy
+
+# (leitura de tela) Verifica se no campo superior esquerdo, há a indicação de um inimigo morto
+def watcherLoot (): 
+    # Dados do pixel onde fica o enemyName
+    coordinate = (1269, 43, 1, 1)
+    rgb = (208,   208,   208)
+    
+    # Retorna a localização do pixel se coiciderem com os dados enviados, se não retorna None
+    isLoot = findInScreenshot(coordinate, rgb)
+    
+    if (isLoot !=  None):
+        isLoot = True
+    else:
+        isLoot = False
+    
+    return isLoot
