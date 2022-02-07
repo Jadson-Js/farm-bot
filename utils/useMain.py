@@ -8,7 +8,7 @@ from utils.useSkills import demage, healer, healerArea,  defense, summon # Habil
 
 # Analisa e atualiza o que está acontecendo no arrow do aimbot
 def updateAimbotToEnemy():
-    target = watcherTarget() # (Leitura de tela) Verifica se no camto superior esquerdo, há a indicação de um inimigo
+    target = watcherTarget() # (Leitura de tela) Verifica se no canto superior esquerdo, e retorna 'isEnemy', 'isLoot' ou None
 
     # Atualizando as propriedades do aimbot
     if (target == 'isEnemy'):
@@ -24,11 +24,6 @@ def updateAimbotToEnemy():
         
     print(f'isEnemy: {aimbot.isEnemy}, isLoot: {aimbot.isLoot}')
         
-def skillBuffs():
-    healer() # Auto cura
-    defense() # Auto proteção de def
-    summon() # Summon lacaio
-       
         
 def findEnemy():
     area = 4 # Area q o spiral procurará o inimigo
@@ -43,8 +38,12 @@ def fight ():
     demage() # (Habilidade)
     
 def getLoot (): 
-    
     openGetCloseLoot()
     
     # Agora q ja está em cima do cadaver, procure um novo inimigo
     findEnemy()
+    
+def skillBuffs():
+    healer() # Auto cura
+    defense() # Auto proteção de def
+    summon() # Summon lacaio

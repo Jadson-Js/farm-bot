@@ -1,6 +1,6 @@
 from time import sleep
 from modules.Aimbot import aimbot # ERROR: CHAMA O useMain E O useMain também chama o useUser
-from utils.useReadScreen import myLocation
+from utils.useReadScreen import myLocation, counterValuesItems
 
 # Clica no user
 def clickMe ():
@@ -17,10 +17,11 @@ def clickMe ():
 # Posiciona as arrow para que simplifique o loop do findEnemy
 def startPositionArrow ():
     clickMe() 
-    aimbot.moveArrow('up')
-    aimbot.moveArrow('right')
+    aimbot.pressButton('up', False)
+    aimbot.pressButton('right', False)
         
 def scannerByArrow (area, updateAimbotToEnemy, skillBuffs):
+    hold = False
     direction = ('down', 'left', 'up', 'right') 
     places = 2 # Casas q a seta moverá
 
@@ -35,7 +36,7 @@ def scannerByArrow (area, updateAimbotToEnemy, skillBuffs):
             
                 
             for moves in range(0, places): # Numero de movimentos da ceta
-                aimbot.moveArrow(direction[index]) # Isso move a ceta um uma padrão spiral
+                aimbot.pressButton(direction[index], hold) # Isso move a ceta um uma padrão spiral
 
                 # Atualizando o aimbot a cada movimento do espiral
                 updateAimbotToEnemy() 
@@ -57,16 +58,32 @@ def openGetCloseLoot ():
     hold = False
     print('Inicio do looteamento')
     
+    print('enter')
     aimbot.pressButton('enter', hold) # Vá até o loot e abrá
     
     sleep(1) # Espere chegar lá
     
-    aimbot.pressButton('enter', hold) # Pegue todo o loot
+    # (Agora com a bag aberta)
+   
+    amount = counterValuesItems()
+    print(amount)
     
-  
-    aimbot.pressButton('enter', hold)  # Se posicione em cima do cadaver
+    # (Sabendo a quantidade de itens)
+    # moveArrow pra direira
+    # click a quantidade de itens
+    print('right')
+    aimbot.pressButton('right', hold)
     
-    sleep(.5) # Espere o aimbot chegar lá
+    for presses in range(0, amount):
+        sleep(.5)
+        print('enter')
+        aimbot.pressButton('enter', hold)
+    
+    # (E para fechar a bag)
+    # Aperte 'f1'
+    sleep(.5)
+    print('f1')
+    aimbot.pressButton('f1', hold)
     
     print('fim do looteamento')
         

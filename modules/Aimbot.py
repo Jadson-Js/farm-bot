@@ -33,7 +33,7 @@ class Aimbot:
                         
                         r, g, b = screenshot.getpixel((x, y)) # Pega o rgb do pixel onde o looping está passando.
 
-                        for rgbTarget in self.rgbWanteds:
+                        for rgbTarget in self.rgbWanteds: # Percorre os rgb alvos
                             
                             if (r == rgbTarget[0]) and (g == rgbTarget[1]) and (b == rgbTarget[2]):
                                 stop = True
@@ -42,6 +42,17 @@ class Aimbot:
                                 continue
         else:
             return None
+    
+    def counterFrame (self, coordinate, frames):
+        counter = 0
+        
+        for frame in frames:
+            data = pyautogui.locateOnScreen(frame, region=coordinate, confidence=0.7)
+            print(data)
+            if (data != None):
+                print(data)
+                counter += 1
+        return counter
     
     # Pressiona uma keyword
     def pressButton (self, button, hold):
@@ -54,14 +65,5 @@ class Aimbot:
     # Clicka em uma coordenada indicada
     def clickIn (self, x, y):
         pyautogui.click(x, y)
-        
-    # Apague isso e utilize o 'pressButton'
-    def moveArrow (self, direction):
-        pyautogui.press(direction)
-        
-    # Apague isso e utilize o 'pressButton'
-    def startPositionArrow (self):
-        self.moveArrow('left')
-        self.moveArrow('up')
         
 aimbot = Aimbot()

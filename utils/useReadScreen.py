@@ -12,22 +12,16 @@ def findInScreenshot (coordinate, rgbTarget):
     
     return data
 
-def myLocation ():
-    # Coordenadas da area onde o user pode estar
-    coordinate = (800, 200, 400, 350)
-    rgbTarget = [(255,  57, 255)]
-    data = findInScreenshot(coordinate, rgbTarget)
-    return data
-
 # 1269, 39
 # (Leitura de tela) Verifica se no camto superior esquerdo, há a indicação de um inimigo
 def watcherTarget (): 
-    # Dados do pixel onde fica o enemyName
+    # Dados do pixel
     coordinate = (1269, 39, 1, 1)
+    # Rgb alvos
     rgbEnemyLife = (208,   208,   208)
     rgbEnemyDead = (255,   0,   0)
     
-    rgbTarget = [rgbEnemyLife, rgbEnemyDead]
+    rgbTarget = [rgbEnemyLife, rgbEnemyDead] 
     
     # Retorna a localização do pixel se coiciderem com os dados enviados, se não retorna None
     data = findInScreenshot(coordinate, rgbTarget)
@@ -42,4 +36,18 @@ def watcherTarget ():
     else:
         return None
     
-    return isEnemy
+def counterValuesItems ():
+    coordinate = (967, 197, 250 , 53)
+    frames = ['images/frames/gold.png', 'images/frames/imundice.png']
+    
+    # Retorna a localização do pixel se coiciderem com os dados enviados, se não retorna None
+    amount = aimbot.counterFrame(coordinate, frames)
+    
+    return amount
+    
+def myLocation ():
+    # Coordenadas da area onde o user pode estar
+    coordinate = (800, 200, 400, 350)
+    rgbTarget = [(255,  57, 255)]
+    data = findInScreenshot(coordinate, rgbTarget)
+    return data

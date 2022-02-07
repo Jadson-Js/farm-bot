@@ -13,17 +13,20 @@ while (True):
 
     # Se está em luta, continue
     if (aimbot.inFight == True): 
+        print('Fight()')
         fight()
         continue
     
     if (aimbot.isLoot == True):
-        print('getLoot')
+        print('getLoot()')
         getLoot()
         continue
 
     if(aimbot.isEnemy == True): 
+        print('Fight()')
         fight()
     else:
+        print('findEnemy()')
         findEnemy() 
         
     # obs: Pode parecer q a existencia das duas variavéis são desnessesaria, porém a ordem q é manipulada cada uma, interfere se o aimbot vai iniciar um combate ou se ele ja está em combate e graças a isso, o aimbot se torná mais seguro
