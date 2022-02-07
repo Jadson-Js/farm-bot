@@ -4,11 +4,11 @@ from utils.useReadScreen import myLocation
 
 # Clica no user
 def clickMe ():
-    coordinate = myLocation() # Coordenadas de sua localização atual
-    if (coordinate != None):
+    data = myLocation() # Coordenadas de sua localização atual
+    if (data != None):
         # Ajustes
-        x = coordinate['x'] + 2
-        y = coordinate['y'] + 7
+        x = data['x'] + 2
+        y = data['y'] + 7
         aimbot.clickIn(x, y)
     else: 
         print('DANGER: User not found!, click of emmergence!')

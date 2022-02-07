@@ -8,7 +8,7 @@ class Aimbot:
         self.inFight = False 
         self.isLoot = False  
         self.regionToPrint = None
-        self.rgbWanted = None
+        self.rgbWanteds = None
              
     # Screenshot de uma região selecionada        
     def printTarget (self):
@@ -33,11 +33,13 @@ class Aimbot:
                         
                         r, g, b = screenshot.getpixel((x, y)) # Pega o rgb do pixel onde o looping está passando.
 
-                        if (r == self.rgbWanted[0]) and (g == self.rgbWanted[1]) and (b == self.rgbWanted[2]):
-                            stop = True
-                            return {'x': self.regionToPrint[0] + x, 'y': self.regionToPrint[1] + y}
-                        else:
-                            continue
+                        for rgbTarget in self.rgbWanteds:
+                            
+                            if (r == rgbTarget[0]) and (g == rgbTarget[1]) and (b == rgbTarget[2]):
+                                stop = True
+                                return {'x': self.regionToPrint[0] + x, 'y': self.regionToPrint[1] + y, 'rgb': (r, g, b)}
+                            else:
+                                continue
         else:
             return None
     

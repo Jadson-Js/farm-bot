@@ -1,51 +1,45 @@
 from modules.Aimbot import aimbot
 
 # Screenshot de um local selecionado e retorna a coordenadas do getpixel
-def findInScreenshot (coordinate, rgb):
+def findInScreenshot (coordinate, rgbTarget):
     # Declarando dados do pixel nas propriedades do aimbot
     aimbot.regionToPrint = coordinate
-    aimbot.rgbWanted = rgb
+    aimbot.rgbWanteds = rgbTarget
     # Tira print de uma area especificada nas propriedades do aimbot
     screenshot = aimbot.printTarget() 
     # Retorna a localização do pixel q coincide com as propriedades do aimbot, se não for encontrado retorna None
-    location = aimbot.findRgb(screenshot) 
-    return location
+    data = aimbot.findRgb(screenshot) 
+    
+    return data
 
 def myLocation ():
     # Coordenadas da area onde o user pode estar
     coordinate = (800, 200, 400, 350)
-    rgb = (255,  57, 255)
-    location = findInScreenshot(coordinate, rgb)
-    return location
+    rgbTarget = [(255,  57, 255)]
+    data = findInScreenshot(coordinate, rgbTarget)
+    return data
 
+# 1269, 39
 # (Leitura de tela) Verifica se no camto superior esquerdo, há a indicação de um inimigo
-def watcherEnemyName (): 
+def watcherTarget (): 
     # Dados do pixel onde fica o enemyName
-    coordinate = (1298, 39, 1, 1)
-    rgb = (221,   0,   0)
+    coordinate = (1269, 39, 1, 1)
+    rgbEnemyLife = (208,   208,   208)
+    rgbEnemyDead = (255,   0,   0)
+    
+    rgbTarget = [rgbEnemyLife, rgbEnemyDead]
     
     # Retorna a localização do pixel se coiciderem com os dados enviados, se não retorna None
-    isEnemy = findInScreenshot(coordinate, rgb)
+    data = findInScreenshot(coordinate, rgbTarget)
     
-    if (isEnemy !=  None):
-        isEnemy = True
+    
+    if (data !=  None):
+        
+        if (data['rgb'] == (255, 0, 0)):
+            return 'isEnemy'
+        else:
+            return 'isLoot'
     else:
-        isEnemy = False
+        return None
     
     return isEnemy
-
-# (leitura de tela) Verifica se no campo superior esquerdo, há a indicação de um inimigo morto
-def watcherLoot (): 
-    # Dados do pixel onde fica o enemyName
-    coordinate = (1269, 43, 1, 1)
-    rgb = (208,   208,   208)
-    
-    # Retorna a localização do pixel se coiciderem com os dados enviados, se não retorna None
-    isLoot = findInScreenshot(coordinate, rgb)
-    
-    if (isLoot !=  None):
-        isLoot = True
-    else:
-        isLoot = False
-    
-    return isLoot

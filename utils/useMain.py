@@ -3,22 +3,21 @@ from modules.Aimbot import aimbot
 
 # Micro funções do aimbot, subdivididade para cada setor do aimbot.
 from utils.useUser import startPositionArrow, scannerByArrow, startFight, openGetCloseLoot # Ações.
-from utils.useReadScreen import watcherEnemyName, watcherLoot # Leitura de tela
+from utils.useReadScreen import watcherTarget # Leitura de tela
 from utils.useSkills import demage, healer, healerArea,  defense, summon # Habilidades
 
 # Analisa e atualiza o que está acontecendo no arrow do aimbot
 def updateAimbotToEnemy():
-    isEnemy = watcherEnemyName() # (Leitura de tela) Verifica se no camto superior esquerdo, há a indicação de um inimigo
-    isLoot = watcherLoot() # (leitura de tela) Verifica se no campo superior esquerdo, há a indicação de um inimigo morto
-    
+    target = watcherTarget() # (Leitura de tela) Verifica se no camto superior esquerdo, há a indicação de um inimigo
+
     # Atualizando as propriedades do aimbot
-    if (isEnemy == True):
+    if (target == 'isEnemy'):
         aimbot.isEnemy = True
     else:
         aimbot.isEnemy = False
         aimbot.inFight = False
         
-    if (isLoot == True):
+    if (target == 'isLoot'):
         aimbot.isLoot = True
     else:
         aimbot.isLoot = False
@@ -33,7 +32,6 @@ def skillBuffs():
         
 def findEnemy():
     area = 4 # Area q o spiral procurará o inimigo
-    sleep(.5) # Essa espera de .5s, serve para quando acabar de lootear, o aimbot chegar até em cima do cadaver.
     startPositionArrow() 
     scannerByArrow(area, updateAimbotToEnemy, skillBuffs)
         
