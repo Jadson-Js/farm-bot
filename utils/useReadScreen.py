@@ -62,15 +62,12 @@ def watcherLoot ():
     # Retorna a localização do pixel se coiciderem com os dados enviados, se não retorna None
     data = findInScreenshot(coordinate, rgbLoots)
     print(data)
-
-    if (data !=  None):
-        return True
-    else:
-        return False
+    
+    return data
     
 def myLocation ():
     # Coordenadas da area onde o user pode estar
-    coordinate = (800, 200, 400, 350)
+    coordinate = (880, 30, 465, 564) 
     rgbTarget = [(255,  57, 255)]
     data = findInScreenshot(coordinate, rgbTarget)
     return data

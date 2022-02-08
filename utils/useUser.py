@@ -4,6 +4,8 @@ from utils.useReadScreen import myLocation, watcherLoot, isBagOpen
 
 # Clica no user
 def clickMe ():
+    hold = False
+    
     data = myLocation() # Coordenadas de sua localização atual
     if (data != None):
         # Ajustes
@@ -12,10 +14,18 @@ def clickMe ():
         aimbot.clickIn(x, y)
     else: 
         print('DANGER: User not found!, click of emmergence!')
+        print('f1')
+        aimbot.pressButton('f1', hold)
+        
         aimbot.clickIn(1100, 340)
     
 # Posiciona as arrow para que simplifique o loop do findEnemy
 def startPositionArrow ():
+    open = isBagOpen()
+    
+    if (open == True):
+        openGetCloseLoot()
+       
     clickMe() 
     aimbot.pressButton('up', False)
     aimbot.pressButton('right', False)
@@ -27,12 +37,12 @@ def scannerByArrow (area, updateAimbotToEnemy, skillBuffs):
 
 
     for area in range(1, area): # Numero da area q o espiral vai percorrer
-        skillBuffs() 
             
         for index in range(0, len(direction)):
             
             if (area != 1) and (index % 2 == 0):
                 places += 1
+                skillBuffs() 
             
                 
             for moves in range(0, places): # Numero de movimentos da ceta
@@ -50,8 +60,11 @@ def startFight ():
     hold = False
     aimbot.pressButton('enter', hold) # Inicia confronto
     aimbot.pressButton('enter', hold) # Se tiver 2 em um mesmo bloco, ele atacará o primeiro
-    sleep(.5)
-    aimbot.pressButton('enter', hold) # Se for um loot, ja pega o loot
+ 
+    open = isBagOpen()
+    
+    if (open == True):
+        openGetCloseLoot()
     
     
 def openGetCloseLoot ():
@@ -67,31 +80,29 @@ def openGetCloseLoot ():
     print(open)
     
     if (open == True):
-   
-        print('right')
         aimbot.pressButton('right', hold)
-
-        sleep(.5)
-
+        
         for presses in range(0, 2):
-            isValueItems = watcherLoot()
-
-            if (isValueItems == True):
+            coordinateItem = watcherLoot()
+            
+            if (coordinateItem != None):
+                # Ajustes
+                x = coordinateItem['x'] 
+                y = coordinateItem['y']
+                aimbot.clickIn(x, y)
+            else:
                 sleep(1)
+                print('f1')
+                aimbot.pressButton('f1', hold)
+
+                print('1')
+                aimbot.pressButton('1', hold)
+
                 print('enter')
                 aimbot.pressButton('enter', hold)
-            else:
-                break
+  
         
-        sleep(1)
-        print('f1')
-        aimbot.pressButton('f1', hold)
         
-        print('1')
-        aimbot.pressButton('1', hold)
-
-        print('enter')
-        aimbot.pressButton('enter', hold)
                    
 
 
