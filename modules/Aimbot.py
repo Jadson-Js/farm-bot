@@ -43,17 +43,6 @@ class Aimbot:
         else:
             return None
     
-    def counterFrame (self, coordinate, frames):
-        counter = 0
-        
-        for frame in frames:
-            data = pyautogui.locateOnScreen(frame, region=coordinate, confidence=0.7)
-            print(data)
-            if (data != None):
-                print(data)
-                counter += 1
-        return counter
-    
     # Pressiona uma keyword
     def pressButton (self, button, hold):
         if (hold == True): # Deve pressiona o button indicado + 'alt'

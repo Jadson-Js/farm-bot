@@ -1,6 +1,6 @@
 from time import sleep
 from modules.Aimbot import aimbot # ERROR: CHAMA O useMain E O useMain também chama o useUser
-from utils.useReadScreen import myLocation, counterValuesItems
+from utils.useReadScreen import myLocation, watcherLoot, isBagOpen
 
 # Clica no user
 def clickMe ():
@@ -61,30 +61,40 @@ def openGetCloseLoot ():
     print('enter')
     aimbot.pressButton('enter', hold) # Vá até o loot e abrá
     
-    sleep(1) # Espere chegar lá
+    sleep(2) # Espere chegar lá
     
-    # (Agora com a bag aberta)
+    open = isBagOpen()
+    print(open)
+    
+    if (open == True):
    
-    amount = counterValuesItems()
-    print(amount)
-    
-    # (Sabendo a quantidade de itens)
-    # moveArrow pra direira
-    # click a quantidade de itens
-    print('right')
-    aimbot.pressButton('right', hold)
-    
-    for presses in range(0, amount):
+        print('right')
+        aimbot.pressButton('right', hold)
+
         sleep(.5)
+
+        for presses in range(0, 2):
+            isValueItems = watcherLoot()
+
+            if (isValueItems == True):
+                sleep(1)
+                print('enter')
+                aimbot.pressButton('enter', hold)
+            else:
+                break
+        
+        sleep(1)
+        print('f1')
+        aimbot.pressButton('f1', hold)
+        
+        print('1')
+        aimbot.pressButton('1', hold)
+
         print('enter')
         aimbot.pressButton('enter', hold)
-    
-    # (E para fechar a bag)
-    # Aperte 'f1'
-    sleep(.5)
-    print('f1')
-    aimbot.pressButton('f1', hold)
-    
+                   
+
+
     print('fim do looteamento')
         
         
