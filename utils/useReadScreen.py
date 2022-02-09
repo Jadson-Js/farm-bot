@@ -33,7 +33,7 @@ def watcherTarget ():
     else:
         return None
     
-def isBagOpen ():
+def isLootOpen ():
     # Dados do pixel
     coordinate = (932, 220, 1, 1)
     # Rgb alvos
@@ -41,9 +41,9 @@ def isBagOpen ():
    
     # Retorna a localização do pixel se coiciderem com os dados enviados, se não retorna None
     data = findInScreenshot(coordinate, rgbOpen)
-    print(data)
 
     if (data !=  None):
+        
         return True
     else:
         return False
@@ -59,7 +59,6 @@ def watcherLoot ():
     
     # Retorna a localização do pixel se coiciderem com os dados enviados, se não retorna None
     data = findInScreenshot(coordinate, rgbLoots)
-    print(data)
     
     return data
     

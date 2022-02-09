@@ -2,8 +2,8 @@ from time import sleep
 from modules.Aimbot import aimbot
 
 # Micro funções do aimbot, subdivididade para cada setor do aimbot.
-from utils.useUser import startPositionArrow, scannerByArrow, startFight, openGetCloseLoot # Ações.
-from utils.useReadScreen import watcherTarget # Leitura de tela
+from utils.useUser import startPositionArrow, scannerByArrow, startFight, openLoot, getCloseLoot # Ações.
+from utils.useReadScreen import watcherTarget, isLootOpen # Leitura de tela
 from utils.useSkills import demage, healer, healerArea,  defense, summon # Habilidades
 
 # Analisa e atualiza o que está acontecendo no arrow do aimbot
@@ -37,10 +37,14 @@ def fight ():
     
     demage() # (Habilidade)
     
-def getLoot (): 
-    openGetCloseLoot()
+def loot (): 
+    openLoot()
     
-    # Agora q ja está em cima do cadaver, procure um novo inimigo
+    open = isLootOpen()
+    
+    if (open == True):
+        getCloseLoot()
+        
     findEnemy()
     
 def skillBuffs():

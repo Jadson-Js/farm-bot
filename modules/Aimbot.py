@@ -8,7 +8,7 @@ class Aimbot:
         self.inFight = False 
         self.isLoot = False  
 
-             
+
     # Screenshot de uma região selecionada        
     def printTarget (self, coordinate):
         screenshot = pyautogui.screenshot(region=coordinate) 

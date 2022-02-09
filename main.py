@@ -2,13 +2,13 @@
 from modules.Aimbot import aimbot 
 
 # Macro funções do aimbot
-from utils.useMain import skillBuffs, updateAimbotToEnemy, findEnemy, fight, getLoot
+from utils.useMain import skillBuffs, updateAimbotToEnemy, findEnemy, fight, loot
 
 while (True):
     print('Loop Restarted')
-      
+  
     skillBuffs() # (Habilidades) Auto buff o aimbot
-    
+
     updateAimbotToEnemy() # Analisa e atualiza o que está acontecendo no arrow do aimbot
 
     # Se está em luta, continue
@@ -19,7 +19,7 @@ while (True):
     
     if (aimbot.isLoot == True):
         print('getLoot()')
-        getLoot()
+        loot()
         continue
 
     if(aimbot.isEnemy == True): 
