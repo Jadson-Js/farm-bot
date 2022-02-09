@@ -20,12 +20,7 @@ def clickMe ():
         aimbot.clickIn(1100, 340)
     
 # Posiciona as arrow para que simplifique o loop do findEnemy
-def startPositionArrow ():
-    open = isBagOpen()
-    
-    if (open == True):
-        openGetCloseLoot()
-       
+def startPositionArrow ():       
     clickMe() 
     aimbot.pressButton('up', False)
     aimbot.pressButton('right', False)
@@ -34,8 +29,7 @@ def scannerByArrow (area, updateAimbotToEnemy, skillBuffs):
     hold = False
     direction = ('down', 'left', 'up', 'right') 
     places = 2 # Casas q a seta moverá
-
-
+    
     for area in range(1, area): # Numero da area q o espiral vai percorrer
             
         for index in range(0, len(direction)):
@@ -60,11 +54,6 @@ def startFight ():
     hold = False
     aimbot.pressButton('enter', hold) # Inicia confronto
     aimbot.pressButton('enter', hold) # Se tiver 2 em um mesmo bloco, ele atacará o primeiro
- 
-    open = isBagOpen()
-    
-    if (open == True):
-        openGetCloseLoot()
     
     
 def openGetCloseLoot ():
@@ -102,10 +91,6 @@ def openGetCloseLoot ():
                 aimbot.pressButton('enter', hold)
   
         
-        
-                   
-
-
     print('fim do looteamento')
         
         

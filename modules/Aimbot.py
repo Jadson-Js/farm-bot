@@ -7,17 +7,16 @@ class Aimbot:
         self.isEnemy = False
         self.inFight = False 
         self.isLoot = False  
-        self.regionToPrint = None
-        self.rgbWanteds = None
+
              
     # Screenshot de uma região selecionada        
-    def printTarget (self):
-        screenshot = pyautogui.screenshot(region=self.regionToPrint) 
+    def printTarget (self, coordinate):
+        screenshot = pyautogui.screenshot(region=coordinate) 
         screenshot.save('images/pixels/target.png') 
         return screenshot
     
    # Encontra um pixel com determido rgb e retorna as cordenadas
-    def findRgb(self, screenshot):   
+    def findRgb(self, screenshot, coordinate, rgbTargets):   
         width, height = screenshot.size
         stop = False # Quando for verdadeira, cancela os loopings
         
@@ -30,14 +29,13 @@ class Aimbot:
                     if (stop == True):
                         break
                     else:    
-                        
                         r, g, b = screenshot.getpixel((x, y)) # Pega o rgb do pixel onde o looping está passando.
 
-                        for rgbTarget in self.rgbWanteds: # Percorre os rgb alvos
+                        for rgbTarget in rgbTargets: # Percorre os rgb alvos
                             
                             if (r == rgbTarget[0]) and (g == rgbTarget[1]) and (b == rgbTarget[2]):
                                 stop = True
-                                return {'x': self.regionToPrint[0] + x, 'y': self.regionToPrint[1] + y, 'rgb': (r, g, b)}
+                                return {'x': coordinate[0] + x, 'y': coordinate[1] + y, 'rgb': (r, g, b)}
                             else:
                                 continue
         else:

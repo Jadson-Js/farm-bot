@@ -1,14 +1,12 @@
 from modules.Aimbot import aimbot
 
 # Screenshot de um local selecionado e retorna a coordenadas do getpixel
-def findInScreenshot (coordinate, rgbTarget):
+def findInScreenshot (coordinate, rgbTargets):
     # Declarando dados do pixel nas propriedades do aimbot
-    aimbot.regionToPrint = coordinate
-    aimbot.rgbWanteds = rgbTarget
     # Tira print de uma area especificada nas propriedades do aimbot
-    screenshot = aimbot.printTarget() 
+    screenshot = aimbot.printTarget(coordinate) 
     # Retorna a localização do pixel q coincide com as propriedades do aimbot, se não for encontrado retorna None
-    data = aimbot.findRgb(screenshot) 
+    data = aimbot.findRgb(screenshot, coordinate, rgbTargets) 
     
     return data
 
@@ -20,10 +18,10 @@ def watcherTarget ():
     rgbEnemyLife = (208,   208,   208)
     rgbEnemyDead = (255,   0,   0)
     
-    rgbTarget = [rgbEnemyLife, rgbEnemyDead] 
+    rgbTargets = [rgbEnemyLife, rgbEnemyDead] 
     
     # Retorna a localização do pixel se coiciderem com os dados enviados, se não retorna None
-    data = findInScreenshot(coordinate, rgbTarget)
+    data = findInScreenshot(coordinate, rgbTargets)
     
     
     if (data !=  None):
@@ -68,6 +66,6 @@ def watcherLoot ():
 def myLocation ():
     # Coordenadas da area onde o user pode estar
     coordinate = (880, 30, 465, 564) 
-    rgbTarget = [(255,  57, 255)]
-    data = findInScreenshot(coordinate, rgbTarget)
+    rgbTargets = [(255,  57, 255)]
+    data = findInScreenshot(coordinate, rgbTargets)
     return data
