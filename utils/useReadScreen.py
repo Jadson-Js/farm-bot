@@ -25,7 +25,6 @@ def watcherTarget ():
     
     
     if (data !=  None):
-        
         if (data['rgb'] == (255, 0, 0)):
             return 'isEnemy'
         else:
@@ -33,7 +32,8 @@ def watcherTarget ():
     else:
         return None
     
-def isLootOpen ():
+# Verifica se o loot está aberto
+def watchLootOpen ():
     # Dados do pixel
     coordinate = (932, 220, 1, 1)
     # Rgb alvos
@@ -43,12 +43,14 @@ def isLootOpen ():
     data = findInScreenshot(coordinate, rgbOpen)
 
     if (data !=  None):
-        
+        print('Loot está aberto')
         return True
     else:
+        print('Loot não está aberto.')
         return False
     
-def watcherLoot ():
+# Verifica se há itens valiosos no loot
+def watchLootItem ():
     # Dados do pixel
     coordinate = (990, 220, 10, 10)
     # Rgb alvos
@@ -61,7 +63,25 @@ def watcherLoot ():
     data = findInScreenshot(coordinate, rgbLoots)
     
     return data
+
+# Verifica se o menu do game está aberto
+def watchMenuOpen (): 
+    # Dados do pixel
+    coordinate = (726, 470, 10, 10)
+    # Rgb alvos
+    rgbMenu = [(238, 238, 187)] 
     
+    # Retorna a localização do pixel se coiciderem com os dados enviados, se não retorna None
+    data = findInScreenshot(coordinate, rgbMenu)
+    
+    if (data !=  None):
+        print('Menu está aberto.')
+        return True
+    else:
+        print('Menu não está aberto.')
+        return False
+    
+# Retorna as coordenadas do user
 def myLocation ():
     # Coordenadas da area onde o user pode estar
     coordinate = (880, 30, 465, 564) 

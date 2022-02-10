@@ -12,7 +12,6 @@ class Aimbot:
     # Screenshot de uma região selecionada        
     def printTarget (self, coordinate):
         screenshot = pyautogui.screenshot(region=coordinate) 
-        screenshot.save('images/pixels/target.png') 
         return screenshot
     
    # Encontra um pixel com determido rgb e retorna as cordenadas

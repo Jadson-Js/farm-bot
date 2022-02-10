@@ -1,16 +1,14 @@
-from time import sleep 
 from modules.Aimbot import aimbot
 
 # Micro funções do aimbot, subdivididade para cada setor do aimbot.
 from utils.useUser import startPositionArrow, scannerByArrow, startFight, openLoot, getCloseLoot # Ações.
-from utils.useReadScreen import watcherTarget, isLootOpen # Leitura de tela
-from utils.useSkills import demage, healer, healerArea,  defense, summon # Habilidades
+from utils.useReadScreen import watcherTarget, watchLootOpen # Leitura de tela
+from utils.useSkills import demage, healer,  defense, summon # Habilidades
 
 # Analisa e atualiza o que está acontecendo no arrow do aimbot
 def updateAimbotToEnemy():
-    target = watcherTarget() # (Leitura de tela) Verifica se no canto superior esquerdo, e retorna 'isEnemy', 'isLoot' ou None
+    target = watcherTarget() 
 
-    # Atualizando as propriedades do aimbot
     if (target == 'isEnemy'):
         aimbot.isEnemy = True
     else:
@@ -23,31 +21,51 @@ def updateAimbotToEnemy():
         aimbot.isLoot = False
         
     print(f'isEnemy: {aimbot.isEnemy}, isLoot: {aimbot.isLoot}')
+    
+    print(';')
         
-        
+# Vai procurar um inimigo usando as cetas
 def findEnemy():
-    area = 4 # Area q o spiral procurará o inimigo
+    print('findEnemy():')
+    
+    area = 4 
     startPositionArrow() 
     scannerByArrow(area, updateAimbotToEnemy, skillBuffs)
+    
+    print(';')
         
-# Inicia luta e atualiza propriedade como 'inFight'
+# Luta com o inimigo
 def fight ():
+    print('fight()')
+
     startFight() 
     aimbot.inFight = True
     
-    demage() # (Habilidade)
+    demage() 
     
+    print(';')
+    
+# Faz o looteamento do cadaver
 def loot (): 
+    print('loot()')
+
     openLoot()
     
-    open = isLootOpen()
+    open = watchLootOpen()
     
     if (open == True):
         getCloseLoot()
         
     findEnemy()
     
+    print(';')
+    
+# Usa habilidades de auto buff
 def skillBuffs():
-    healer() # Auto cura
-    defense() # Auto proteção de def
-    summon() # Summon lacaio
+    print('skillBuffs():')
+    
+    healer() 
+    defense() 
+    summon() 
+    
+    print(';')
