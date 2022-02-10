@@ -1,0 +1,24 @@
+{
+    "target": { 
+        "region": [1269, 39, 1, 1],
+        "rgbEnemyLife": [255, 0, 0],
+        "rgbEnemyDead": [208, 208, 208]
+    },
+    "isLootOpen": {
+        "region": [932, 220, 1, 1],
+        "rgb": [90, 239,  74]
+    },
+    "isMenuOpen": {
+        "region": [726, 470, 1, 1],
+        "rgb": [238, 238, 187]
+    },
+    "isValueItem": {
+        "region": [990, 220, 1, 1],
+        "rgbGold": [255, 255,  57],
+        "rgbImundice": [198, 181,  82]
+    },
+    "myLocation": {
+        "region": [880, 30, 465, 564],
+        "rgb": [255,  57, 255]
+    }
+}

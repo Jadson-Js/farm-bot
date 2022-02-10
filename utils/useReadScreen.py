@@ -1,7 +1,12 @@
+import json
 from modules.Aimbot import aimbot
+
+with open('data/pixels.json') as f:
+    dataPixel = json.load(f)
 
 # Screenshot de um local selecionado e retorna a coordenadas do getpixel
 def findInScreenshot (coordinate, rgbTargets):
+    print(coordinate, rgbTargets)
     # Declarando dados do pixel nas propriedades do aimbot
     # Tira print de uma area especificada nas propriedades do aimbot
     screenshot = aimbot.printTarget(coordinate) 
@@ -13,10 +18,10 @@ def findInScreenshot (coordinate, rgbTargets):
 # (Leitura de tela) Verifica se no camto superior esquerdo, há a indicação de um inimigo
 def watcherTarget (): 
     # Dados do pixel
-    coordinate = (1269, 39, 1, 1)
+    coordinate = tuple(dataPixel['target']['region']) # (1269, 39, 1, 1)
     # Rgb alvos
-    rgbEnemyLife = (208,   208,   208)
-    rgbEnemyDead = (255,   0,   0)
+    rgbEnemyLife = tuple(dataPixel['target']['rgbEnemyLife']) # (208,   208,   208)
+    rgbEnemyDead = tuple(dataPixel['target']['rgbEnemyDead']) # (255,   0,   0)
     
     rgbTargets = [rgbEnemyLife, rgbEnemyDead] 
     
@@ -35,9 +40,9 @@ def watcherTarget ():
 # Verifica se o loot está aberto
 def watchLootOpen ():
     # Dados do pixel
-    coordinate = (932, 220, 1, 1)
+    coordinate = tuple(dataPixel['isLootOpen']['region'])  # (932, 220, 1, 1)
     # Rgb alvos
-    rgbOpen = [( 90, 239,  74)]
+    rgbOpen = [tuple(dataPixel['isLootOpen']['rgb'])] # [( 90, 239,  74)]
    
     # Retorna a localização do pixel se coiciderem com os dados enviados, se não retorna None
     data = findInScreenshot(coordinate, rgbOpen)
@@ -50,12 +55,12 @@ def watchLootOpen ():
         return False
     
 # Verifica se há itens valiosos no loot
-def watchLootItem ():
+def watchValueItem ():
     # Dados do pixel
-    coordinate = (990, 220, 10, 10)
+    coordinate = tuple(dataPixel['isValueItem']['region']) # (990, 220, 1, 1)
     # Rgb alvos
-    rgbGold = (255, 255,  57)
-    rgbImundice = (198, 181,  82)
+    rgbGold = tuple(dataPixel['isValueItem']['rgbGold']) # (255, 255,  57)
+    rgbImundice = tuple(dataPixel['isValueItem']['rgbImundice']) # (198, 181,  82)
     
     rgbLoots = [rgbGold, rgbImundice] 
     
@@ -67,9 +72,9 @@ def watchLootItem ():
 # Verifica se o menu do game está aberto
 def watchMenuOpen (): 
     # Dados do pixel
-    coordinate = (726, 470, 10, 10)
+    coordinate = tuple(dataPixel['isMenuOpen']['region']) # (726, 470, 1, 1)
     # Rgb alvos
-    rgbMenu = [(238, 238, 187)] 
+    rgbMenu = [tuple(dataPixel['isMenuOpen']['rgb'])] # [(238, 238, 187)] 
     
     # Retorna a localização do pixel se coiciderem com os dados enviados, se não retorna None
     data = findInScreenshot(coordinate, rgbMenu)
@@ -84,7 +89,7 @@ def watchMenuOpen ():
 # Retorna as coordenadas do user
 def myLocation ():
     # Coordenadas da area onde o user pode estar
-    coordinate = (880, 30, 465, 564) 
-    rgbTargets = [(255,  57, 255)]
+    coordinate = tuple(dataPixel['myLocation']['region']) # (880, 30, 465, 564) 
+    rgbTargets = [tuple(dataPixel['myLocation']['rgb'])] # [(255,  57, 255)]
     data = findInScreenshot(coordinate, rgbTargets)
     return data

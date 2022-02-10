@@ -1,6 +1,6 @@
 from time import sleep
 from modules.Aimbot import aimbot # ERROR: CHAMA O useMain E O useMain também chama o useUser
-from utils.useReadScreen import myLocation, watchLootItem, watchLootOpen, watchMenuOpen
+from utils.useReadScreen import myLocation, watchValueItem, watchLootOpen, watchMenuOpen
 
 # Clica no user
 def clickMe ():
@@ -119,7 +119,7 @@ def getCloseLoot ():
     aimbot.pressButton('right', hold)
         
     for presses in range(0, 2):
-        coordinateItem = watchLootItem()
+        coordinateItem = watchValueItem()
         print(f'Is Value Item: {coordinateItem}')
         
         if (coordinateItem != None):
