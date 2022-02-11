@@ -6,7 +6,6 @@ with open('data/pixels.json') as f:
 
 # Screenshot de um local selecionado e retorna a coordenadas do getpixel
 def findInScreenshot (coordinate, rgbTargets):
-    print(coordinate, rgbTargets)
     # Declarando dados do pixel nas propriedades do aimbot
     # Tira print de uma area especificada nas propriedades do aimbot
     screenshot = aimbot.printTarget(coordinate) 

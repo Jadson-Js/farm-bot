@@ -135,19 +135,20 @@ def getCloseLoot ():
             if (watchMenuOpen() == True):
                 print(f"press('f1')")
                 aimbot.pressButton('f1', hold)
+    else:
         
-    if (watchMenuOpen() == True):
-        print(f"press('f1')")
-        aimbot.pressButton('f1', hold)
-    
-    print(f"press('5')")
-    aimbot.pressButton('5', hold)
-    
-    print(f"press('enter')")
-    aimbot.pressButton('enter', hold)
-    
-    if (watchLootOpen() == True):
-        getCloseLoot()
+        if (watchMenuOpen() == True):
+            print(f"press('f1')")
+            aimbot.pressButton('f1', hold)
+        
+        print(f"press('5')")
+        aimbot.pressButton('5', hold)
+        
+        print(f"press('enter')")
+        aimbot.pressButton('enter', hold)
+        
+        if (watchLootOpen() == True):
+            getCloseLoot()
         
     print(';')
         
