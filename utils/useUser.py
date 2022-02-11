@@ -99,13 +99,13 @@ def openLoot ():
     
     hold = False
     
+    if (watchLootOpen() == True):
+        getCloseLoot()
+    
     print(f"press('enter')")
     aimbot.pressButton('enter', hold) # Vá até o loot e abrá
     
     sleep(2) # Espere chegar lá
-    
-    if (watchLootOpen() == True):
-        getCloseLoot()
     
     print(';')
     
