@@ -26,6 +26,8 @@ def clickMe ():
 def startPositionArrow ():      
     print('startPositionArrow()')
     
+    needEject()
+    
     clickMe() 
     
     print("press('up')")
@@ -39,6 +41,8 @@ def startPositionArrow ():
 # Movimenta as setas em um spiral (Filho do findEnemy)
 def scannerByArrow (area, updateAimbotToEnemy, skillBuffs):
     print('scannerByArrow()')
+    
+    needEject()
     
     hold = False
     direction = ('down', 'left', 'up', 'right') 
@@ -120,9 +124,8 @@ def getCloseLoot ():
             print(f"aimbot.clickIn({x}, {y})")
             aimbot.clickIn(x, y)
         else:     
-            
-            needEject()
-        
+            print(f"press('f1')")
+            aimbot.pressButton('f1', hold)
     else:
         
         needEject()
@@ -141,12 +144,14 @@ def needEject ():
     isLootOpen = watchLootOpen()
     
     if (isLootOpen == True):
+        print('Ejected')
         getCloseLoot()
     
     hold = False
     isMenuOpen = watchMenuOpen()
     
     if (isMenuOpen == True):
+        print('Ejected')
         print(f"press('f1')")
         aimbot.pressButton('f1', hold)
     
