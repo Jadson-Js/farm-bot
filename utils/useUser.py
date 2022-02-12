@@ -28,9 +28,6 @@ def startPositionArrow ():
     
     clickMe() 
     
-    if (watchLootOpen() == True):
-        getCloseLoot()
-    
     print("press('up')")
     aimbot.pressButton('up', False)
     
@@ -42,9 +39,6 @@ def startPositionArrow ():
 # Movimenta as setas em um spiral (Filho do findEnemy)
 def scannerByArrow (area, updateAimbotToEnemy, skillBuffs):
     print('scannerByArrow()')
-    
-    if (watchLootOpen() == True):
-        getCloseLoot()
     
     hold = False
     direction = ('down', 'left', 'up', 'right') 
@@ -79,28 +73,25 @@ def startFight ():
     
     hold = False
     
-    if (watchLootOpen() == True):
-        getCloseLoot()
+    needEject()
     
     print(f"press('enter')")
     aimbot.pressButton('enter', hold) # Inicia confronto
+    sleep(.5)
     
-    if (watchLootOpen() == True):
-        getCloseLoot()
-    
+    needEject()
+        
     print(f"press('enter')")
     aimbot.pressButton('enter', hold) # Se tiver 2 em um mesmo bloco, ele atacará o primeiro
-
+    
     print(';')
          
 # Abri o loot, apertando enter e esperando o user chegar no cadaver e abrir o loot 
 def openLoot ():
     print('openLoot()')
-    
     hold = False
     
-    if (watchLootOpen() == True):
-        getCloseLoot()
+    needEject()
     
     print(f"press('enter')")
     aimbot.pressButton('enter', hold) # Vá até o loot e abrá
@@ -129,29 +120,36 @@ def getCloseLoot ():
             print(f"aimbot.clickIn({x}, {y})")
             aimbot.clickIn(x, y)
         else:     
-            print(f"press('f1")
-            aimbot.pressButton('f1', hold)
             
-            if (watchMenuOpen() == True):
-                print(f"press('f1')")
-                aimbot.pressButton('f1', hold)
+            needEject()
+        
     else:
         
-        if (watchMenuOpen() == True):
-            print(f"press('f1')")
-            aimbot.pressButton('f1', hold)
-        
+        needEject()
+                
         print(f"press('5')")
         aimbot.pressButton('5', hold)
         
         print(f"press('enter')")
         aimbot.pressButton('enter', hold)
         
-        if (watchLootOpen() == True):
-            getCloseLoot()
+        needEject()
         
     print(';')
-        
+    
+def needEject ():
+    isLootOpen = watchLootOpen()
+    
+    if (isLootOpen == True):
+        getCloseLoot()
+    
+    hold = False
+    isMenuOpen = watchMenuOpen()
+    
+    if (isMenuOpen == True):
+        print(f"press('f1')")
+        aimbot.pressButton('f1', hold)
+    
 
 #print('fim do looteamento')
         
