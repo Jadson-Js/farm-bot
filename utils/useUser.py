@@ -128,6 +128,9 @@ def getCloseLoot ():
             aimbot.pressButton('f1', hold)
     else:
         
+        print(f"press('f1')")
+        aimbot.pressButton('f1', hold)
+        
         needEject()
                 
         print(f"press('5')")
